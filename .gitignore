@@ -1,0 +1,17 @@
+build
+imports
+.DS_Store
+.metadata
+.gdbinit
+.sconsign.dblite
+
+*.[oa]
+*~
+
+*.swp
+*.swo
+
+.idea
+*.dblite
+xcuserdata/
+

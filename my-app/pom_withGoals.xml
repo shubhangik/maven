@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mycompany.app</groupId>
+  <artifactId>my-app</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>my-app</name>
+  <url>http://maven.apache.org</url>
+  <build>
+  <plugins>
+  <plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+   <artifactId>maven-dependency-plugin</artifactId>
+   <version>2.0</version>
+   <executions>
+     <execution>
+       <phase>install</phase>
+       <goals>
+         <goal>copy</goal>
+       </goals>
+       <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.mycompany.app</groupId>
+                  <artifactId>my-app</artifactId>
+                  <version>1.0-SNAPSHOT</version>
+                  <type>jar</type>
+                  <overWrite>false</overWrite>
+                  <outputDirectory>${project.build.directory}/target_new</outputDirectory>
+                  <destFileName>optional-new-name.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+     </execution>
+   </executions>
+  </plugin>
+  </plugins>
+</build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+
+
+<!--
+Notes:
+1. goals are linked with plugins.
+2. when we want tp perform any task , we should add that plugin and there associated goal as done above.
+3. how to check which goals are linked with X plugin
+mvn help:describe -Dplugin=dependency -Ddetail
+4. How to check which parameters are available with X goal
+mvn help:describe -Dplugin=dependency -Dgoal=copy –Ddetail
+5. You might be wondering why that <executions> element is there. That is so that you can run the 
+same goal multiple times with different configuration if needed. Separate executions can also be given 
+an ID so that during inheritance or the application of profiles you can control whether goal configuration 
+is merged or turned into an additional execution.
+6. goals parameters will go inside configuration tag.
+7. plugins/pluginManagement will go under build tag always.
+8. goals will always go under executions tag.
+
+
+
+
+-->
